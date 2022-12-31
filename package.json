@@ -1,0 +1,22 @@
+{
+  "name": "react-tutorial",
+  "version": "1.0.0",
+  "description": "Namaste React Live Class",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sukalyan14/React-Tutorial.git"
+  },
+  "author": "Sukalyan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sukalyan14/React-Tutorial/issues"
+  },
+  "homepage": "https://github.com/Sukalyan14/React-Tutorial#readme",
+  "devDependencies": {
+    "parcel": "^2.8.2"
+  }
+}
