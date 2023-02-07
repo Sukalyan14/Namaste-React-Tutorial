@@ -19,8 +19,8 @@
 // tree shaking - removing un-wanted
 // transitive dependency
 
-import React from "react"
-import ReactDOM from "react-dom/client"
+// import React from "react"
+// import ReactDOM from "react-dom/client"
 
 const heading1 = React.createElement(  //CREATING a element in react
     'h1', //Element or tag in quotes
@@ -29,7 +29,7 @@ const heading1 = React.createElement(  //CREATING a element in react
         className: 'text',
         // style:'color:palegreen'
     },
-    'Hello World Chapter3'  //Children of the above created element
+    'Hello World'  //Children of the above created element
 );
 
 const heading2 = React.createElement(
