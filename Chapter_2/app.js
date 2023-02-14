@@ -29,7 +29,7 @@ const heading1 = React.createElement(  //CREATING a element in react
         className: 'text',
         // style:'color:palegreen'
     },
-    'Hello World Chapter3'  //Children of the above created element
+    'Hello World Chapter2'  //Children of the above created element
 );
 
 const heading2 = React.createElement(

@@ -22,54 +22,36 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 
-const Title = () => (
-    <a href="/">
-        <img
-        className="logo"
-            src="https://yt3.googleusercontent.com/ytc/AL5GRJXudT76175T4x4n7eslWM1YkgNLHDSSqfXGoadl=s900-c-k-c0x00ffffff-no-rj" 
-            alt="logo" />  
-     </a>
+
+//JSX
+
+const heading = (
+    <h1 id="title" key="h2">Namaste React</h1>  //if jsx is written in multiple line then parenthesis is required
     )
 
+const Title = () => (
+    <h1 id="title" key="h2">Namaste React</h1>  //if jsx is written in multiple line then parenthesis is required
+    )
+
+//React Components
 
 const HeaderComponent = () => {
     return (
-    <div className="header">
+    <div>
         <Title/>
-        <div className="nav-items">
-            <ul>
-                <li>Home</li>
-                <li>About Us</li>
-                <li>Contact</li>
-                <li>Cart</li>
-            </ul>
-        </div>
+        {/* {Title()} */}
+        {/* {heading} */}
+        <h1>Namaste React component</h1>
+        <h2>H2 tag</h2>
     </div>
     );
 }
-
-const Body = () => {
-    return (
-        <h4>Body</h4>
-    )
-}
-
-const Footer = () => {
-    return (
-        <h4>Footer</h4>
-    )
-}
-
-const Applayout = () => {
-    return (
-        <>
-            <HeaderComponent/>
-            <Body/>
-            <Footer/>
-        </>
-    )
-}
+// const heading = <h1 id="title" key="h2">Namaste React</h1> //if it is a one-liner than it can be written without parenthesis
 
 const root = ReactDOM.createRoot(document.getElementById('root')) //passing a react element inside the root
 
-root.render(<Applayout/>)
+//below line is for when we render react element
+// root.render(heading) //render the container 
+
+//below line is for react componet
+root.render(<HeaderComponent/>)
