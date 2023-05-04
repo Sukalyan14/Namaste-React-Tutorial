@@ -23,10 +23,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 //Default Import
 import Header  from "./component/Header";
-import Body from "./component/Body";
+import Body from "./component/body";
 import Footer from "./component/Footer";
+import AboutUs from "./component/AboutUs";
+import Error from "./component/Error";
 //Named Import
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter , Outlet, RouterProvider } from "react-router-dom";   //RouterProvider is a component
+import Contact from "./component/Contact";
+import RestraurantMenu from "./component/RestraurantMenu";
 // import { Title } from "./component/Header";
 
 //importing both title and headers when both are marked as export
@@ -40,6 +44,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 // config Driven UI
 
+
 const Applayout = () => {
     return (
         //{<></>-> <React.Fragment></React.Fragment>}
@@ -51,17 +56,44 @@ const Applayout = () => {
 
         <> 
             <Header/>
-            <Body/>
-            {/* <Footer/> */}
-            <div style={{
+            {/* {Outlet} */}
+            <Outlet/>
+            <Footer/>
+            {/* <div style={{
                 backgroundColor:"red"
             }}>
               <Footer />
-            </div>
+            </div> */}
         </>
     )
 }
 
+const appRouter = createBrowserRouter([
+    {
+        path:"/",
+        element: <Applayout/>,
+        errorElement:<Error/>,
+        children: [
+            {
+                path:"/",
+                element: <Body/>,
+            },
+            {
+                path:"/about",
+                element: <AboutUs/>,
+            },
+            {
+                path:"/contact",
+                element: <Contact/>,
+            },
+            {
+                path:"/retaurant/:id",
+                element: <RestraurantMenu/>
+            }
+        ]
+    }, 
+])
+
 const root = ReactDOM.createRoot(document.getElementById('root')) //passing a react element inside the root
 
-root.render(<Applayout/>)
+root.render(<RouterProvider router={appRouter}/>)

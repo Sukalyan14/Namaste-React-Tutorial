@@ -1,4 +1,5 @@
 import Logo from "../assets/2021-09-07.png"
+import { Link } from "react-router-dom"
 
 const loggedInUser = () => {
     //API authentication
@@ -22,7 +23,7 @@ const Header = () => {
         <div className="nav-items">
             <ul>
                 <li>Home</li>
-                <li>About Us</li>
+                <li><Link to="/about">About Us</Link></li>
                 <li>Contact</li>
                 <li>Cart</li>
             </ul>

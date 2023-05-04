@@ -28,12 +28,12 @@ const Body = () => {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING")
         const json = await data.json()
 
-        console.log(json);
+        // console.log(json);
         setAllRestraunts(json?.data?.cards[2]?.data?.data?.cards)
         setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards)
     }
 
-    console.log("render");
+    // console.log("render");
 
     //Conditional Rendering
 
@@ -70,7 +70,11 @@ const Body = () => {
             <div className="restaurant-card">
                 {
                     filteredRestaurants.map(restaurant => {
-                        return <RestrauntCard {...restaurant.data} key={restaurant.data.id} />  //Assigning a key to each card
+                        return (
+                        <Link to={"/restaurant" + restaurant.data.id} key={restaurant.data.id}>  
+                            <RestrauntCard {...restaurant.data} />
+                        </Link>
+                        );  //Assigning a key to each card
                     })
                 }
 
