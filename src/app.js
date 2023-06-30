@@ -23,7 +23,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 //Default Import
 import Header  from "./component/Header";
-import Body from "./component/body";
+import Body from "./component/Body";
 import Footer from "./component/Footer";
 import AboutUs from "./component/AboutUs";
 import Error from "./component/Error";
@@ -31,6 +31,7 @@ import Error from "./component/Error";
 import { createBrowserRouter , Outlet, RouterProvider } from "react-router-dom";   //RouterProvider is a component
 import Contact from "./component/Contact";
 import RestraurantMenu from "./component/RestraurantMenu";
+import Profile from "./component/Profile";
 // import { Title } from "./component/Header";
 
 //importing both title and headers when both are marked as export
@@ -56,7 +57,6 @@ const Applayout = () => {
 
         <> 
             <Header/>
-            {/* {Outlet} */}
             <Outlet/>
             <Footer/>
             {/* <div style={{
@@ -81,6 +81,12 @@ const appRouter = createBrowserRouter([
             {
                 path:"/about",
                 element: <AboutUs/>,
+                children:[
+                    {
+                        path:"profile",   //Don't write /profile for nested route because a "/" in here means its directly coming after the root path
+                        element: <Profile />
+                    },
+                ]
             },
             {
                 path:"/contact",

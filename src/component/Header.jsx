@@ -22,9 +22,9 @@ const Header = () => {
         <Title/>
         <div className="nav-items">
             <ul>
-                <li>Home</li>
+                <li><Link to="/">Home</Link></li>
                 <li><Link to="/about">About Us</Link></li>
-                <li>Contact</li>
+                <li><Link to="/contact">Contact Us</Link></li>
                 <li>Cart</li>
             </ul>
         </div>

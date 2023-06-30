@@ -2,47 +2,33 @@ import { useState , useEffect } from "react";
 import { restaurantList } from "../config";
 import { RestrauntCard } from "./RestarauntCard";
 import Shimmer from "./Shimmer";
-
-const filterData = (searchtxt , restaurant_data) => {
-    return restaurant_data?.name?.toLowerCase().filter((restaurant) => restaurant.data.name.includes(searchtxt.toLowerCase()))
-}
+import { Link } from "react-router-dom"
+import { filterData } from "../utils/helper";
 
 const Body = () => {
 
-    //searchTxt is a local variable and in brackets we can give the default value for the state variable
-    const [searchTxt , setsearchTxt] = useState("")  //use state is used to create state variables. UseState function returns an array and the first element is a variable and second element is a function which is used to change in the state variable  
+    const [searchTxt , setsearchTxt] = useState("")  
 
-    // const [restaurants, setrestaurants] = useState(restaurantList)
-    const [allRestraunts , setAllRestraunts] = useState([])
+    const [allRestraunts, setAllRestraunts] = useState([])
     const [filteredRestaurants, setFilteredRestaurants] = useState([])
-    
-    //how to avoid rendering a component
-    //Also donot declare useState hook inside a if-else or loop or outside a component
 
     useEffect(() => {
         //Api Call
         getRestaurants()
-    },[])  //gets called when body itself is rendered only once and empty third brackets are called dependency array
+    }, [])  //gets called when body itself is rendered only once and empty third brackets are called dependency array
     //one component can have multiple useEffect hooks
+
     async function getRestaurants() {
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING")
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.3532772&lng=85.8265977&page_type=DESKTOP_WEB_LISTING")
         const json = await data.json()
-
         // console.log(json);
-        setAllRestraunts(json?.data?.cards[2]?.data?.data?.cards)
-        setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards)
+        setAllRestraunts(json?.data?.cards[0]?.data?.data?.cards)
+        setFilteredRestaurants(json?.data?.cards[0]?.data?.data?.cards)
     }
-
-    // console.log("render");
-
+    //Also donot declare useState hook inside a if-else or loop or outside a component
     //Conditional Rendering
-
     // when not rendering component
     if(!allRestraunts) return null
-
-
-    // if(filteredRestaurants.length == 0)
-    //     return <h1>No restaurants found</h1>
 
     return allRestraunts.length == 0 ? <Shimmer/> : (
         <>
@@ -60,7 +46,7 @@ const Body = () => {
                     onClick={()=> {
                         //update the state - restaruants
                         const data = filterData(searchTxt, allRestraunts)
-
+                        // console.log(data);
                         setFilteredRestaurants(data)
                     }}
                     >Search
@@ -70,10 +56,11 @@ const Body = () => {
             <div className="restaurant-card">
                 {
                     filteredRestaurants.map(restaurant => {
+                        
                         return (
-                        <Link to={"/restaurant" + restaurant.data.id} key={restaurant.data.id}>  
-                            <RestrauntCard {...restaurant.data} />
-                        </Link>
+                            <Link to={"/retaurant/" + restaurant.data.id} key={restaurant.data.id}>  
+                                <RestrauntCard {...restaurant.data} />
+                            </Link>
                         );  //Assigning a key to each card
                     })
                 }
