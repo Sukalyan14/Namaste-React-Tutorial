@@ -4,6 +4,7 @@ import { RestrauntCard } from "./RestarauntCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom"
 import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
 
@@ -21,9 +22,15 @@ const Body = () => {
     async function getRestaurants() {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.3532772&lng=85.8265977&page_type=DESKTOP_WEB_LISTING")
         const json = await data.json()
-        // console.log(json);
-        setAllRestraunts(json?.data?.cards[0]?.data?.data?.cards)
-        setFilteredRestaurants(json?.data?.cards[0]?.data?.data?.cards)
+        
+        setAllRestraunts(json?.data?.cards[2]?.data?.data?.cards)
+        setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards)
+    }
+
+    const online = useOnline()
+
+    if(!online){
+        return <h2>Offline Please Check Your Internet Connection</h2>
     }
     //Also donot declare useState hook inside a if-else or loop or outside a component
     //Conditional Rendering
